@@ -32,7 +32,9 @@ jobs:
 
       - name: Build APK
         working-directory: project/MYGrowthAndroid
-        run: gradle assembleDebug
+        run: |
+          sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' app/build.gradle.kts
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
